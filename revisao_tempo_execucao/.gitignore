@@ -1,0 +1,14 @@
+# Arquivos de compilação
+bin/
+target/
+
+# Arquivos de configuração do IntelliJ IDEA
+.idea/
+out
+
+# Arquivos de compilação do Maven
+*.iml
+*.ipr
+*.iws
+*.classpath
+*.project
