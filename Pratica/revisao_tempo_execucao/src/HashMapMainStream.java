@@ -1,11 +1,12 @@
 import fonte.Pessoa;
 import javax.management.InvalidAttributeValueException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class HashMapMain {
+public class HashMapMainStream {
     public static void main(String[] args) {
 
         final int TAMANHO_P = 2_500_000;
@@ -27,8 +28,10 @@ public class HashMapMain {
 
         for (int i = 0; i < TAMANHO_N; i++) {
             valores[i] = r.nextInt(TAMANHO_P) + 1;
-            if (mapaPessoas.containsKey(valores[i]));
         }
+
+        Arrays.stream(valores)
+                .forEach(id -> mapaPessoas.containsKey(id));
 
         long fim = System.nanoTime();
 
