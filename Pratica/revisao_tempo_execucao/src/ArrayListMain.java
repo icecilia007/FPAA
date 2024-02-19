@@ -1,17 +1,16 @@
 import fonte.Pessoa;
 import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class ArrayListMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidAttributeValueException {
 
         //tamanho de pessoas a serem preenchidas no vetor
         final int TAMANHO_P = 2_500_000;
         //quantidade de números que seram buscados
-        final int TAMANHO_N = 40_000;
+        final int TAMANHO_N = 20_000;
         final double NANO_TO_MS = 1_000_000d;
         final double MS_TO_SEC = 1_000d;
         Random r = new Random(42);
@@ -20,18 +19,19 @@ public class ArrayListMain {
 
         long ini = System.nanoTime();
 
-        for (int i = 0; i < TAMANHO_P; i++) {
-            try {
-                pessoas.add(new Pessoa(i+1,"Pe"));
-            } catch (InvalidAttributeValueException e) {
-                e.printStackTrace();
+        try {
+            for (int i = 0; i < TAMANHO_P; i++) {
+                    pessoas.add(new Pessoa(i+1,"Caram"));
+
             }
+        } catch (InvalidAttributeValueException e) {
+            e.printStackTrace();
         }
 
         for (int i = 0; i < TAMANHO_N; i++) {
-            valores[i] = r.nextInt(TAMANHO_P) + 1;
+            Pessoa searched = new Pessoa(r.nextInt(TAMANHO_P), "Pessoa");
             for (Pessoa pessoa : pessoas) {
-                if (pessoa.getId() == valores[i]) {
+                if (pessoa.equals(searched)) {
                     break;
                 }
             }

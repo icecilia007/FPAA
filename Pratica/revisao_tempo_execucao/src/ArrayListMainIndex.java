@@ -1,41 +1,39 @@
 import fonte.Pessoa;
 import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ArrayListMainStream {
+public class ArrayListMainIndex {
     public static void main(String[] args) {
 
         //tamanho de pessoas a serem preenchidas no vetor
-        final int TAMANHO_P = 2_500_000;
+        final int TAMANHO_P = 10_000_000;
         //quantidade de números que seram buscados
-        final int TAMANHO_N = 40_000;
+        final int TAMANHO_N = 20_000;
         final double NANO_TO_MS = 1_000_000d;
         final double MS_TO_SEC = 1_000d;
         Random r = new Random(42);
-        int[] valores = new int[TAMANHO_N];
         List<Pessoa> pessoas = new ArrayList<>();
 
         long ini = System.nanoTime();
 
-        for (int i = 0; i < TAMANHO_P; i++) {
-            try {
-                pessoas.add(new Pessoa(i+1,"Pe"));
-            } catch (InvalidAttributeValueException e) {
-                e.printStackTrace();
+        try {
+            for (int i = 0; i < TAMANHO_P; i++) {
+                    pessoas.add(new Pessoa(i + 1, "Caram"));
             }
+        } catch (InvalidAttributeValueException e) {
+            e.printStackTrace();
         }
 
-        for (int i = 0; i < TAMANHO_N; i++) {
-            valores[i] = r.nextInt(TAMANHO_P) + 1;
+        try {
+            for (int i = 0; i < TAMANHO_N; i++) {
+                    boolean pessoaEncontrada = pessoas.indexOf(new Pessoa(r.nextInt(TAMANHO_P), "Ts")) != -1;
+            }
+        } catch (InvalidAttributeValueException e) {
+            e.printStackTrace();
         }
-
-        Arrays.stream(valores)
-                .forEach(valor -> pessoas.stream()
-                        .filter(pessoa -> pessoa.getId() == valor));
-
+    
         long fim = System.nanoTime();
 
         double tempoMs = (fim-ini)/NANO_TO_MS;
